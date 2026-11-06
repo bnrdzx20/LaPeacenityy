@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071a3d">
+<title>LA PEACE | Minecraft Community</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --blue: #2878e5;
+  --light: #91c4ff;
+  --glass: rgba(15, 44, 91, .48);
+  --border: rgba(155, 201, 255, .24);
+  --white: #f2f7ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #07152d;
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* MINECRAFT CAVE BACKGROUND */
+
+.cave {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 12, 29, .55),
+      rgba(4, 16, 40, .76),
+      rgba(3, 12, 29, .94)
+    ),
+    url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=85");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.cave::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%,
+      rgba(29, 105, 223, .30),
+      transparent 55%);
+}
+
+/* BLUE ORE GLOW */
+
+.glow {
+  position: fixed;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: #1769e9;
+  filter: blur(110px);
+  opacity: .23;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glow.one {
+  top: 15%;
+  left: -150px;
+}
+
+.glow.two {
+  top: 60%;
+  right: -150px;
+}
+
+/* PARTICLES */
+
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #8fc5ff;
+  box-shadow: 0 0 12px #398cff;
+  transform: rotate(45deg);
+  opacity: .6;
+  animation: float 9s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%,100% {
+    transform: translateY(0) rotate(45deg);
+    opacity: .15;
+  }
+  50% {
+    transform: translateY(-75px) rotate(135deg);
+    opacity: .9;
+  }
+}
+
+/* NAVBAR */
+
+header {
+  width: min(1100px, 92%);
+  margin: auto;
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: white;
+}
+
+.logo span {
+  color: #83baff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+}
+
+.nav-links a {
+  color: #c5dafa;
+  font-size: 13px;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+/* HERO */
+
+.container {
+  width: min(1000px, 90%);
+  margin: auto;
+}
+
+.hero {
+  text-align: center;
+  padding: 75px 0 45px;
+  animation: appear 1s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 15px;
+  border: 1px solid rgba(132, 190, 255, .35);
+  border-radius: 30px;
+  background: rgba(28, 91, 175, .25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #b9d9ff;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+
+.hero h1 {
+  margin-top: 22px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(65px, 13vw, 110px);
+  line-height: .95;
+  letter-spacing: 4px;
+  font-weight: 700;
+  text-shadow:
+    0 0 15px rgba(54, 137, 255, .7),
+    0 0 50px rgba(32, 102, 255, .35);
+}
+
+.hero h1 span {
+  color: #79b4ff;
+}
+
+.hero p {
+  max-width: 550px;
+  margin: 20px auto 25px;
+  color: #c1d4ef;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* BUTTONS */
+
+.btn {
+  display: inline-block;
+  padding: 13px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  transition: .3s;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #a7d0ff, #3888ed);
+  color: #071a3d;
+  box-shadow: 0 5px 25px rgba(51, 133, 255, .35);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,.08);
+  color: white;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.15);
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* GLASS PANELS */
+
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(64, 126, 208, .19),
+    rgba(9, 31, 68, .56)
+  );
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.12),
+    0 15px 45px rgba(0,0,0,.2);
+}
+
+/* INTRO */
+
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 23px;
+  margin: 35px 0 65px;
+}
+
+.intro h2 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 26px;
+  margin-bottom: 7px;
+}
+
+.intro p {
+  color: #b7cce9;
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+.photo {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid rgba(142, 197, 255, .7);
+  background: linear-gradient(135deg,#2463b4,#071b43);
+  box-shadow: 0 0 22px rgba(47, 130, 255, .3);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* RESOURCE SECTION */
+
+.section-title {
+  margin-bottom: 22px;
+}
+
+.section-title h2 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+
+.section-title p {
+  color: #9fb9df;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.resources {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.resource {
+  padding: 19px;
+  min-height: 115px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: white;
+  transition: .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.resource::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  right: -65px;
+  bottom: -65px;
+  background: #459aff;
+  filter: blur(50px);
+  opacity: .25;
+}
+
+.resource:hover {
+  transform: translateY(-5px);
+  border-color: #81baff;
+  background: rgba(42, 102, 183, .35);
+  box-shadow: 0 12px 30px rgba(24, 96, 202, .2);
+}
+
+.resource-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  font-size: 23px;
+  background: rgba(105, 166, 255, .16);
+  border: 1px solid rgba(155, 201, 255, .23);
+}
+
+.resource h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.resource p {
+  color: #abc5e9;
+  font-size: 11px;
+}
+
+.arrow {
+  margin-left: auto;
+  color: #9bcaff;
+  font-size: 19px;
+}
+
+/* COMMUNITY */
+
+.community {
+  margin-top: 65px;
+}
+
+.community-card {
+  padding: 25px;
+  margin-bottom: 15px;
+}
+
+.community-card h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 23px;
+  margin-bottom: 7px;
+}
+
+.community-card p {
+  color: #afc5e5;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 35px 0;
+  margin-top: 50px;
+  border-top: 1px solid rgba(155, 201, 255, .15);
+  color: #8eaed8;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .hero {
+    padding-top: 55px;
+  }
+
+  .hero h1 {
+    letter-spacing: 1px;
+  }
+
+  .intro {
+    padding: 17px;
+    margin-top: 20px;
+  }
+
+  .photo {
+    width: 65px;
+    height: 65px;
+  }
+
+  .resources {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .resource {
+    min-height: 100px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="cave"></div>
+<div class="glow one"></div>
+<div class="glow two"></div>
+<div id="particles"></div>
+
+<header>
+  <div class="logo">✦ LA <span>PEACE</span></div>
+
+  <nav class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#resources">Resources</a>
+    <a href="#community">Community</a>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero" id="home">
+
+  <div class="badge">✦ MINECRAFT COMMUNITY ✦</div>
+
+  <h1>LA <span>PEACE</span></h1>
+
+  <p>
+    Welcome to LA PEACE!
+    A place to play, create, explore and enjoy
+    the world of Minecraft together.
+  </p>
+
+<div class="hero-buttons">
+  <a class="btn btn-primary"
+     href="https://realms.gg/bK5kpwKeagf_S8Q"
+     target="_blank" rel="noopener">
+     ⛏ JOIN REALM
+  </a>
+</div>
+
+</section>
+
+<section class="intro glass">
+
+  <div>
+    <h2>Welcome, Miner!</h2>
+    <p>
+      Selamat datang di basecamp LA PEACE.
+      Temukan berbagai tools, resource,
+      dan komunitas Minecraft di sini.
+    </p>
+  </div>
+
+  <!-- GANTI foto-komunitas.jpg DENGAN FOTO KAMU -->
+  <div class="photo">
+    <img src="foto-komunitas.jpg"
+         alt="LA PEACE Community"
+         onerror="this.style.display='none'">
+  </div>
+
+</section>
+
+<section id="resources">
+
+  <div class="section-title">
+    <h2>✦ MINECRAFT RESOURCES</h2>
+    <p>Everything you need, all in one place.</p>
+  </div>
+
+  <div class="resources">
+
+    <a class="resource glass"
+       href="https://blockbench.net/"
+       target="_blank" rel="noopener">
+      <div class="resource-icon">🧊</div>
+      <div>
+        <h3>Blockbench</h3>
+        <p>3D modeling and animation</p>
+      </div>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="resource glass"
+       href="https://www.chunkbase.com/"
+       target="_blank" rel="noopener">
+      <div class="resource-icon">🗺️</div>
+      <div>
+        <h3>Chunkbase</h3>
+        <p>Seed map and biome finder</p>
+      </div>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="resource glass"
+       href="https://www.crabcraft.net/tools/block-gradient"
+       target="_blank" rel="noopener">
+      <div class="resource-icon">🎨</div>
+      <div>
+        <h3>Block Gradient</h3>
+        <p>Minecraft block color tool</p>
+      </div>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="resource glass"
+       href="https://www.curseforge.com"
+       target="_blank" rel="noopener">
+      <div class="resource-icon">📦</div>
+      <div>
+        <h3>CurseForge</h3>
+        <p>Mods and modpacks</p>
+      </div>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="resource glass"
+       href="https://bit.ly/4iCVsNy"
+       target="_blank" rel="noopener">
+      <div class="resource-icon">🛍</div>
+      <div>
+        <h3>SenovShop</h3>
+        <p>TOP 1 INDONESIA MINECRAFT SHOP</p>
+      </div>
+      <span class="arrow">↗</span>
+    </a>
+
+  </div>
+
+</section>
+
+<section class="community" id="community">
+
+  <div class="community-card glass">
+    <h3>🔵 Discord Community</h3>
+    <p>
+      Join our Discord server.
+      Chat, share creations and play together!
+    </p>
+
+    <a class="btn btn-secondary"
+       href="https://discord.gg/aWWMFhc7QN"
+       target="_blank" rel="noopener">
+       JOIN DISCORD ↗
+    </a>
+  </div>
+
+  <div class="community-card glass">
+    <h3>🟢 WhatsApp Channel</h3>
+    <p>
+      Follow our WhatsApp channel
+      for community updates.
+    </p>
+
+    <a class="btn btn-secondary"
+       href="https://whatsapp.com/channel/0029Vb9G2nOGzzKQidu1FW41"
+       target="_blank" rel="noopener">
+       FOLLOW CHANNEL ↗
+    </a>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <p>✦ LA PEACE MINECRAFT COMMUNITY ✦</p>
+  <br>
+  <p>DIAMOND! DIAMOND! Thats La Peace.</p>
+</footer>
+
+<script>
+
+// CREATE BLUE LAPIS PARTICLES
+
+const particleContainer =
+  document.getElementById("particles");
+
+for(let i = 0; i < 35; i++) {
+
+  const particle =
+    document.createElement("div");
+
+  particle.className = "particle";
+
+  particle.style.left =
+    Math.random() * 100 + "%";
+
+  particle.style.top =
+    Math.random() * 100 + "%";
+
+  particle.style.animationDelay =
+    Math.random() * 9 + "s";
+
+  particle.style.animationDuration =
+    (6 + Math.random() * 8) + "s";
+
+  const size = 2 + Math.random() * 4;
+
+  particle.style.width = size + "px";
+  particle.style.height = size + "px";
+
+  particleContainer.appendChild(particle);
+}
+
+</script>
+
+</body>
+</html>
